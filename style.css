@@ -11,6 +11,7 @@
     --warning: #FF9800;
     --error: #FF5252;
     --font-mono: 'JetBrains Mono', 'Share Tech Mono', monospace;
+    --font-display: 'Oswald', 'JetBrains Mono', sans-serif;
     --metal-border: 1px solid rgba(197, 155, 39, 0.25);
     --gold-glow: 0 0 15px rgba(197, 155, 39, 0.15);
 }
@@ -128,7 +129,7 @@ body {
 }
 
 .header-title-set { display: flex; flex-direction: column; }
-.brand-title { font-size: 15px; font-weight: 900; letter-spacing: 2.5px; color: var(--primary); text-shadow: 0 0 8px rgba(197, 155, 39, 0.2); }
+.brand-title { font-family: var(--font-display); font-size: 17px; font-weight: 700; letter-spacing: 3px; color: var(--primary); text-shadow: 0 0 8px rgba(197, 155, 39, 0.2); }
 .system-status { font-size: 8px; color: var(--text-muted); letter-spacing: 1px; margin-top: 3px; display: flex; align-items: center; gap: 6px; }
 
 .pulse-dot {
@@ -184,7 +185,7 @@ body {
 
 /* EXPEDIENTE DEL OPERADOR */
 .operator-profile-summary { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
-.op-name { font-size: 20px; font-weight: 800; letter-spacing: 1.5px; color: var(--text); }
+.op-name { font-family: var(--font-display); font-size: 24px; font-weight: 700; letter-spacing: 1.5px; color: var(--text); }
 .op-meta { display: flex; gap: 8px; font-size: 10px; margin-top: 5px; }
 .op-level-box { text-align: right; }
 .level-tag { font-size: 22px; font-weight: 900; color: var(--secondary); text-shadow: 0 0 10px rgba(225, 186, 78, 0.3); }
@@ -265,6 +266,154 @@ body {
 @keyframes pulse {
     0%, 100% { opacity: 0.5; }
     50% { opacity: 1; }
+}
+
+/* ====== OPERACIONES // PLAN DE ENTRENAMIENTO ====== */
+
+/* Resumen de carga semanal */
+.train-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.train-stat {
+    text-align: center;
+    padding: 12px 6px;
+    background: linear-gradient(180deg, rgba(197, 155, 39, 0.06) 0%, rgba(6, 7, 9, 0.4) 100%);
+    border: 1px solid rgba(197, 155, 39, 0.2);
+    clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
+}
+.train-stat-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 0 12px rgba(225, 186, 78, 0.3);
+}
+.train-stat-label {
+    display: block;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+/* Lista de días */
+.train-week {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.train-day {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--surface) 0%, #12151B 100%);
+    border: 1px solid rgba(197, 155, 39, 0.18);
+    border-left: 3px solid var(--text-muted);
+    padding: 14px;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.train-day:hover { transform: translateX(2px); }
+
+.train-day-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    gap: 6px;
+}
+.train-day-name {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: var(--text);
+}
+.train-today-tag {
+    font-size: 7px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    background: var(--secondary);
+    color: var(--bg-main);
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.train-day-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    border-left: 1px solid rgba(197, 155, 39, 0.12);
+    border-right: 1px solid rgba(197, 155, 39, 0.12);
+}
+.train-day-icon i { width: 22px; height: 22px; }
+
+.train-day-body { flex: 1; min-width: 0; }
+.train-day-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+.train-day-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text);
+    letter-spacing: 0.3px;
+}
+.train-badge {
+    font-size: 8px;
+    font-weight: bold;
+    letter-spacing: 0.8px;
+    padding: 2px 7px;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+.train-day-detail {
+    font-size: 10px;
+    line-height: 1.45;
+    color: rgba(234, 234, 234, 0.6);
+    margin-bottom: 6px;
+}
+.train-day-foco {
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+/* Variantes por tipo (colores derivados del logo + acentos tácticos) */
+.train-day.type-bjj { border-left-color: var(--error); }
+.train-day.type-bjj .train-day-icon i,
+.train-day.type-bjj .train-badge { color: var(--error); }
+
+.train-day.type-entreno { border-left-color: var(--secondary); }
+.train-day.type-entreno .train-day-icon i,
+.train-day.type-entreno .train-badge { color: var(--secondary); }
+
+.train-day.type-descanso { border-left-color: var(--success); opacity: 0.92; }
+.train-day.type-descanso .train-day-icon i,
+.train-day.type-descanso .train-badge { color: var(--success); }
+
+/* Día actual resaltado */
+.train-day.is-today {
+    box-shadow: var(--gold-glow), inset 0 0 14px rgba(197, 155, 39, 0.06);
+    border-color: rgba(225, 186, 78, 0.5);
+}
+.train-day.is-today::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 8px; height: 8px;
+    border-top: 2px solid var(--secondary);
+    border-right: 2px solid var(--secondary);
 }
 
 /* UTILIDADES */

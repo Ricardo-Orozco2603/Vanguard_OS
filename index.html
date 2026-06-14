@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VANGUARD OS - Centro de Mando</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -135,9 +138,30 @@
 
             <section id="view-operaciones" class="view-section">
                 <div class="tactical-card">
-                    <div class="card-header"><span class="card-title">OPERACIONES</span><span class="card-subtitle">ENTRENAMIENTO FÍSICO</span></div>
-                    <p class="muted">Cargando registros tácticos de entrenamiento...</p>
+                    <div class="card-header">
+                        <span class="card-title">OPERACIONES // PLAN SEMANAL</span>
+                        <span class="card-subtitle">PROTOCOLO DE DESPLIEGUE FÍSICO</span>
+                    </div>
+
+                    <!-- Resumen de carga semanal -->
+                    <div class="train-summary">
+                        <div class="train-stat">
+                            <span class="train-stat-num text-secondary">3</span>
+                            <span class="train-stat-label">BJJ</span>
+                        </div>
+                        <div class="train-stat">
+                            <span class="train-stat-num text-secondary">3</span>
+                            <span class="train-stat-label">ENTRENO</span>
+                        </div>
+                        <div class="train-stat">
+                            <span class="train-stat-num text-secondary">1</span>
+                            <span class="train-stat-label">DESCANSO</span>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Calendario táctico de entrenamiento -->
+                <div class="train-week" id="train-week"></div>
             </section>
 
             <section id="view-intel" class="view-section">

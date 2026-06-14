@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VANGUARD OS - Centro de Mando</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- FONDO DE RADAR TÁCTICO -->
+    <div class="radar-container">
+        <div class="radar-ring ring-1"></div>
+        <div class="radar-ring ring-2"></div>
+        <div class="radar-ring ring-3"></div>
+        <div class="radar-axis-x"></div>
+        <div class="radar-axis-y"></div>
+        <div class="radar-sweep"></div>
+        <div class="radar-node node-success" style="top: 25%; left: 35%;"></div>
+        <div class="radar-node node-error" style="top: 70%; left: 65%;"></div>
+    </div>
+
+    <!-- CONTENEDOR CENTRAL (MOBILE FIRST) -->
+    <div class="app-container">
+        
+        <!-- HUD HEADER -->
+        <header class="hud-header">
+            <div class="header-left">
+                <!-- Logotipo Oficial Integrado en el HUD Header -->
+                <div class="hud-logo-container">
+                    <img src="Logo/Logo.png" alt="Vanguard OS Insignia" class="hud-logo-img">
+                </div>
+                <div class="header-title-set">
+                    <span class="brand-title">VANGUARD OS</span>
+                    <span class="system-status"><span class="pulse-dot"></span> TACTICAL OPERATIONAL CORE</span>
+                </div>
+            </div>
+            <div class="system-core-tag">COMMAND TO EXECUTE</div>
+        </header>
+
+        <!-- CONTENIDO DINÁMICO (VISTAS) -->
+        <main class="hud-content">
+            
+            <!-- VISTA: DASHBOARD (HUD) -->
+            <section id="view-hud" class="view-section active">
+                
+                <!-- Tarjeta de Operador Estilo Expediente -->
+                <div class="tactical-card operator-card">
+                    <div class="card-header">
+                        <span class="card-title">OPERATOR IDENTIFICATION</span>
+                        <span class="card-subtitle">PREMIUM EXPEDIENT GEN-4</span>
+                    </div>
+                    
+                    <div class="operator-profile-summary">
+                        <div>
+                            <h2 id="op-name" class="op-name">L. RODRÍGUEZ</h2>
+                            <div class="op-meta">
+                                <span class="text-primary font-bold" id="op-rango">OPERADOR VETERANO</span>
+                                <span class="muted">|</span>
+                                <span class="text-secondary flex-align" id="op-division">
+                                    <i data-lucide="shield" class="icon-inline"></i> DIV: SENTINEL
+                                </span>
+                            </div>
+                        </div>
+                        <div class="op-level-box">
+                            <div class="level-tag">LVL <span id="op-nivel">04</span></div>
+                            <div class="streak-tag"><i data-lucide="flame" class="icon-inline"></i> STREAK: <span id="op-racha">12</span> DAYS</div>
+                        </div>
+                    </div>
+
+                    <!-- Barra de XP con Relieve -->
+                    <div class="xp-container">
+                        <div class="xp-labels">
+                            <span>EVOLUTION PROGRESS (XP)</span>
+                            <span class="text-secondary"><span id="xp-actual">720</span> / <span id="xp-target">1000</span> XP</span>
+                        </div>
+                        <div class="xp-bar-outer">
+                            <div id="xp-bar-inner" class="xp-bar-inner"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grid Táctico de Misiones -->
+                <div class="tactical-grid">
+                    <div class="tactical-card unified-card">
+                        <div class="card-header">
+                            <span class="card-title">DAILY MISSION</span>
+                            <span class="card-subtitle">CRITICAL OBJECTIVE</span>
+                        </div>
+                        <div class="mission-body">
+                            <i data-lucide="crosshair" class="icon-error"></i>
+                            <p>Completar rutina de Despliegue de Fuerza (BJJ / Pesas).</p>
+                        </div>
+                    </div>
+
+                    <div class="tactical-card unified-card flex-center text-center">
+                        <div class="card-header">
+                            <span class="card-title">WEEKLY EFFICIENCY</span>
+                            <span class="card-subtitle">NET PERFORMANCE</span>
+                        </div>
+                        <div class="efficiency-box">
+                            <span class="efficiency-num text-secondary">85%</span>
+                            <p class="efficiency-label">COMMAND CONTROL</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objetivo Estratégico Metálico -->
+                <div class="tactical-card objective-card">
+                    <div class="card-header">
+                        <span class="card-title">STRATEGIC OBJECTIVES</span>
+                        <span class="card-subtitle">LONG RANGE TRACKING</span>
+                    </div>
+                    <div class="objective-row">
+                        <div class="objective-info">
+                            <i data-lucide="target" class="icon-primary"></i>
+                            <span>Cierre de Semestre Académico</span>
+                        </div>
+                        <span class="text-primary font-bold">78%</span>
+                    </div>
+                    <div class="xp-bar-outer" style="height: 6px; margin-top: 10px;">
+                        <div class="xp-bar-inner" style="width: 78%;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISTAS SECUNDARIAS -->
+            <section id="view-protocolos" class="view-section">
+                <div class="tactical-card">
+                    <div class="card-header"><span class="card-title">PROTOCOLOS</span><span class="card-subtitle">SISTEMA DE HÁBITOS</span></div>
+                    <p class="muted">Sincronizando protocolos de disciplina...</p>
+                </div>
+            </section>
+
+            <section id="view-operaciones" class="view-section">
+                <div class="tactical-card">
+                    <div class="card-header"><span class="card-title">OPERACIONES</span><span class="card-subtitle">ENTRENAMIENTO FÍSICO</span></div>
+                    <p class="muted">Cargando registros tácticos de entrenamiento...</p>
+                </div>
+            </section>
+
+            <section id="view-intel" class="view-section">
+                <div class="tactical-card">
+                    <div class="card-header"><span class="card-title">INTELIGENCIA</span><span class="card-subtitle">ANALÍTICA Y TELEMETRÍA</span></div>
+                    <p class="muted">Compilando datos de rendimiento...</p>
+                </div>
+            </section>
+
+            <section id="view-perfil" class="view-section">
+                <div class="tactical-card">
+                    <div class="card-header"><span class="card-title">EXPEDIENTE</span><span class="card-subtitle">DATOS DEL OPERADOR</span></div>
+                    <p class="muted">Accediendo a la hoja de servicio militar...</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- NAVEGACIÓN INFERIOR HUD -->
+        <nav class="hud-nav">
+            <button class="nav-item active" data-target="view-hud">
+                <i data-lucide="layout-dashboard"></i>
+                <span>HUD</span>
+            </button>
+            <button class="nav-item" data-target="view-protocolos">
+                <i data-lucide="shield-check"></i>
+                <span>PROTOCOLOS</span>
+            </button>
+            <button class="nav-item" data-target="view-operaciones">
+                <i data-lucide="dumbbell"></i>
+                <span>OPERACIONES</span>
+            </button>
+            <button class="nav-item" data-target="view-intel">
+                <i data-lucide="bar-chart-3"></i>
+                <span>INTEL</span>
+            </button>
+            <button class="nav-item" data-target="view-perfil">
+                <i data-lucide="user"></i>
+                <span>PERFIL</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

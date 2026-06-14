@@ -1,0 +1,279 @@
+/* PALETA INSPIRADA EN LA INSIGNIA METÁLICA DE VANGUARD OS */
+:root {
+    --bg-main: #060608;
+    --surface: #0E1014;
+    --surface-metal: #14171E;
+    --primary: #C59B27;       /* Dorado Envejecido del Logo */
+    --secondary: #E1BA4E;     /* Dorado de Altos Relieves */
+    --text: #EAEAEA;
+    --text-muted: rgba(234, 234, 234, 0.4);
+    --success: #00C853;
+    --warning: #FF9800;
+    --error: #FF5252;
+    --font-mono: 'JetBrains Mono', 'Share Tech Mono', monospace;
+    --metal-border: 1px solid rgba(197, 155, 39, 0.25);
+    --gold-glow: 0 0 15px rgba(197, 155, 39, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* RADAR DE FONDO PREMIUM */
+.radar-container {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.25;
+    overflow: hidden;
+}
+
+.radar-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(197, 155, 39, 0.08);
+}
+.ring-1 { width: 250px; height: 250px; }
+.ring-2 { width: 500px; height: 500px; border-style: dashed; }
+.ring-3 { width: 750px; height: 750px; }
+
+.radar-axis-x { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(197, 155, 39, 0.05); }
+.radar-axis-y { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(197, 155, 39, 0.05); }
+
+.radar-sweep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 380px;
+    height: 380px;
+    background: conic-gradient(from 0deg at top left, rgba(197, 155, 39, 0.15) 0deg, transparent 120deg);
+    transform-origin: top left;
+    border-radius: 0 100% 0 0;
+    animation: sweep 14s linear infinite;
+}
+
+.radar-node { position: absolute; width: 6px; height: 6px; border-radius: 50%; }
+.node-success { background-color: var(--success); box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
+.node-error { background-color: var(--error); box-shadow: 0 0 10px var(--error); animation: pulse 1s infinite; }
+
+@keyframes sweep {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ENCAPSULAMIENTO MOBILE-FIRST */
+.app-container {
+    max-width: 440px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: linear-gradient(180deg, rgba(14, 16, 20, 0.9) 0%, rgba(6, 6, 8, 0.98) 100%);
+    border-left: 1px solid rgba(197, 155, 39, 0.12);
+    border-right: 1px solid rgba(197, 155, 39, 0.12);
+    padding-bottom: 88px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+}
+
+/* HUD HEADER */
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: var(--metal-border);
+    background: rgba(14, 16, 20, 0.95);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Contenedor del Logotipo Real */
+.hud-logo-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(197, 155, 39, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.hud-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 4px rgba(197, 155, 39, 0.4));
+}
+
+.header-title-set { display: flex; flex-direction: column; }
+.brand-title { font-size: 15px; font-weight: 900; letter-spacing: 2.5px; color: var(--primary); text-shadow: 0 0 8px rgba(197, 155, 39, 0.2); }
+.system-status { font-size: 8px; color: var(--text-muted); letter-spacing: 1px; margin-top: 3px; display: flex; align-items: center; gap: 6px; }
+
+.pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--success);
+    animation: pulse 1.8s infinite;
+}
+
+.system-core-tag {
+    font-size: 9px;
+    font-weight: bold;
+    background: rgba(197, 155, 39, 0.08);
+    border: 1px solid rgba(197, 155, 39, 0.4);
+    padding: 3px 8px;
+    color: var(--secondary);
+    letter-spacing: 0.5px;
+}
+
+/* VISTAS */
+.hud-content { padding: 16px; }
+.view-section { display: none; }
+.view-section.active { display: block; animation: hudInterfaceLaunch 0.45s cubic-bezier(0.15, 0.85, 0.35, 1) forwards; }
+
+/* CONTENEDOR TÁCTICO MEJORADO */
+.tactical-card {
+    background: linear-gradient(135deg, var(--surface) 0%, #12151B 100%);
+    border: var(--metal-border);
+    padding: 18px;
+    position: relative;
+    margin-bottom: 16px;
+    box-shadow: var(--gold-glow), inset 0 0 10px rgba(0,0,0,0.5);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.tactical-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 10px; height: 10px;
+    border-top: 2px solid var(--secondary);
+    border-left: 2px solid var(--secondary);
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(197, 155, 39, 0.15);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+}
+.card-title { font-size: 10px; font-weight: bold; letter-spacing: 1.5px; color: var(--primary); }
+.card-subtitle { font-size: 8px; color: var(--text-muted); display: block; margin-top: 2px; }
+
+/* EXPEDIENTE DEL OPERADOR */
+.operator-profile-summary { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+.op-name { font-size: 20px; font-weight: 800; letter-spacing: 1.5px; color: var(--text); }
+.op-meta { display: flex; gap: 8px; font-size: 10px; margin-top: 5px; }
+.op-level-box { text-align: right; }
+.level-tag { font-size: 22px; font-weight: 900; color: var(--secondary); text-shadow: 0 0 10px rgba(225, 186, 78, 0.3); }
+.streak-tag { font-size: 9px; color: var(--success); margin-top: 2px; font-weight: bold; }
+
+/* BARRA DE PROGRESO DE ALTA PRECISIÓN */
+.xp-container { width: 100%; }
+.xp-labels { display: flex; justify-content: space-between; font-size: 9px; color: rgba(234, 234, 234, 0.6); margin-bottom: 5px; letter-spacing: 1px; }
+.xp-bar-outer { width: 100%; height: 10px; background-color: #060709; border: 1px solid rgba(197, 155, 39, 0.3); padding: 1px; }
+.xp-bar-inner { height: 100%; background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%); box-shadow: 0 0 8px var(--primary); transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+/* GRID TÁCTICO */
+.tactical-grid { display: grid; grid-template-cols: 1fr 1fr; gap: 14px; }
+.mission-body { display: flex; gap: 10px; align-items: flex-start; }
+.mission-body p { font-size: 11px; line-height: 1.45; color: rgba(234, 234, 234, 0.85); }
+
+.efficiency-box { padding: 6px 0; }
+.efficiency-num { font-size: 32px; font-weight: 900; line-height: 1; text-shadow: 0 0 12px rgba(225, 186, 78, 0.25); }
+.efficiency-label { font-size: 8px; color: var(--text-muted); margin-top: 6px; letter-spacing: 1px; }
+
+.objective-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; margin-top: 4px; }
+.objective-info { display: flex; align-items: center; gap: 8px; }
+
+/* MENÚ INFERIOR HUD TÁCTICO */
+.hud-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 440px;
+    height: 68px;
+    background-color: rgba(14, 16, 20, 0.96);
+    backdrop-filter: blur(15px);
+    border-top: var(--metal-border);
+    display: grid;
+    grid-template-cols: repeat(5, 1fr);
+    z-index: 20;
+    box-shadow: 0 -5px 25px rgba(0,0,0,0.6);
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    color: rgba(234, 234, 234, 0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+.nav-item i { width: 20px; height: 20px; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1275); }
+.nav-item span { font-size: 8px; font-family: var(--font-mono); font-weight: bold; margin-top: 5px; letter-spacing: 0.5px; }
+
+.nav-item.active { color: var(--secondary); text-shadow: 0 0 8px rgba(225, 186, 78, 0.4); }
+.nav-item.active i { transform: translateY(-2px); color: var(--secondary); }
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    width: 36px;
+    height: 3px;
+    background-color: var(--secondary);
+    box-shadow: 0 0 12px var(--secondary);
+}
+
+.nav-item:hover { color: var(--primary); }
+
+/* ANIMACIONES */
+@keyframes hudInterfaceLaunch {
+    from { opacity: 0; transform: translateY(10px) scale(0.99); filter: blur(2px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* UTILIDADES */
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.font-bold { font-weight: bold; }
+.muted { color: var(--text-muted); font-size: 11px; }
+.flex-align { display: flex; align-items: center; gap: 5px; }
+.flex-center { display: flex; flex-direction: column; justify-content: center; }
+.icon-inline { width: 13px; height: 13px; }
+.icon-primary { color: var(--primary); width: 16px; height: 16px; }
+.icon-error { color: var(--error); width: 18px; height: 18px; flex-shrink: 0; }
